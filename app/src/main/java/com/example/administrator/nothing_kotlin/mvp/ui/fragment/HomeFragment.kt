@@ -1,11 +1,13 @@
-package com.example.administrator.nothing_kotlin.ui.fragment
+package com.example.administrator.nothing_kotlin.mvp.ui.fragment
 
 import android.view.View
 import android.widget.TextView
 import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.base.BaseLazyFragment
 import com.example.administrator.nothing_kotlin.bean.RespHomeData
-import com.example.administrator.nothing_kotlin.ui.fragment.HomeContract.Presenter
+import com.example.administrator.nothing_kotlin.mvp.contract.HomeContract
+import com.example.administrator.nothing_kotlin.mvp.contract.HomeContract.Presenter
+import com.example.administrator.nothing_kotlin.mvp.presenter.HomePresenter
 
 class HomeFragment : BaseLazyFragment() , HomeContract.View{
 
@@ -21,7 +23,7 @@ class HomeFragment : BaseLazyFragment() , HomeContract.View{
     }
 
     override fun initView(view: View) {
-        presenter = HomePresenter(context, activity , this)
+        presenter = HomePresenter(context, activity, this)
         mTv = view.findViewById(R.id.mTv)
     }
 

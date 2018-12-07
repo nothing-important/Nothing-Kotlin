@@ -1,4 +1,4 @@
-package com.example.administrator.nothing_kotlin.ui
+package com.example.administrator.nothing_kotlin.mvp.ui
 
 import android.os.Build
 import android.support.annotation.RequiresApi
@@ -12,9 +12,9 @@ import android.widget.TextView
 import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.adapter.MainAdapter
 import com.example.administrator.nothing_kotlin.base.BaseActivity
-import com.example.administrator.nothing_kotlin.ui.fragment.MineFragment
-import com.example.administrator.nothing_kotlin.ui.fragment.GoodsFragment
-import com.example.administrator.nothing_kotlin.ui.fragment.HomeFragment
+import com.example.administrator.nothing_kotlin.mvp.ui.fragment.MineFragment
+import com.example.administrator.nothing_kotlin.mvp.ui.fragment.GoodsFragment
+import com.example.administrator.nothing_kotlin.mvp.ui.fragment.HomeFragment
 import com.example.administrator.nothing_kotlin.views.CustomViewPager
 
 @RequiresApi(Build.VERSION_CODES.M)

@@ -1,4 +1,4 @@
-package com.example.administrator.nothing_kotlin.ui.fragment
+package com.example.administrator.nothing_kotlin.mvp.ui.fragment
 
 import android.view.View
 import com.example.administrator.nothing_kotlin.R

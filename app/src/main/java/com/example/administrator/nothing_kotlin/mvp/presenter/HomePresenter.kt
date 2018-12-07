@@ -1,8 +1,9 @@
-package com.example.administrator.nothing_kotlin.ui.fragment
+package com.example.administrator.nothing_kotlin.mvp.presenter
 
 import android.app.Activity
 import android.content.Context
 import com.example.administrator.nothing_kotlin.bean.RespHomeData
+import com.example.administrator.nothing_kotlin.mvp.contract.HomeContract
 import com.example.administrator.nothing_kotlin.net_base.ApiService
 import com.example.administrator.nothing_kotlin.net_base.NetU
 import com.example.administrator.nothing_kotlin.net_base.NetU.RequestListener

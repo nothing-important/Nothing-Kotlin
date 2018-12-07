@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    tools:context=".mvp.ui.MainActivity">
 
     <com.example.administrator.nothing_kotlin.views.CustomViewPager
         android:id="@+id/viewpager"

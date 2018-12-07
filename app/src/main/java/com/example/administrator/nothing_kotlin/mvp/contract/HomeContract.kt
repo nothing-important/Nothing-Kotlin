@@ -1,4 +1,4 @@
-package com.example.administrator.nothing_kotlin.ui.fragment
+package com.example.administrator.nothing_kotlin.mvp.contract
 
 import com.example.administrator.nothing_kotlin.bean.RespHomeData
 import com.example.administrator.nothing_kotlin.mvp_base.BasePresenter
