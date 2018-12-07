@@ -1,1 +1,2 @@
-a Kotlin program
+##### 一个kotlin练习项目
+###### 目前架构已经搭好
