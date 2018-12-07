@@ -1,4 +1,4 @@
-package com.example.administrator.nothing_kotlin.net_base
+package com.example.administrator.nothing_kotlin.utils
 
 import android.util.Log
 

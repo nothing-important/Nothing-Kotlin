@@ -5,12 +5,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.utils.DialogU
+import com.example.administrator.nothing_kotlin.utils.LogU
 import rx.Observable
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.functions.Action0
 import rx.schedulers.Schedulers
-import java.util.logging.Logger
 
 open class NetU<T> {
 
