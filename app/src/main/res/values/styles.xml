@@ -8,6 +8,13 @@
         <item name="colorAccent">#1296db</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/splash</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="LoadingDialog" parent="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
         <item name="android:windowFrame">@null</item>
         <!-- 边框 -->

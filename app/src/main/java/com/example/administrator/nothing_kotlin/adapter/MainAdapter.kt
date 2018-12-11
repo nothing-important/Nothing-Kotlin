@@ -3,7 +3,6 @@ package com.example.administrator.nothing_kotlin.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.example.administrator.nothing_kotlin.bean.TabBean
 
 class MainAdapter(fm: FragmentManager? , fragmentList: ArrayList<Fragment>) : FragmentPagerAdapter(fm) {
 
