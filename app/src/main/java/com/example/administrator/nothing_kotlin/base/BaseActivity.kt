@@ -1,15 +1,18 @@
 package com.example.administrator.nothing_kotlin.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.support.v7.app.AppCompatActivity
+import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.net_base.RxActivity
+import com.example.administrator.nothing_kotlin.utils.StatusBarU
+import java.math.BigDecimal
 
 abstract class BaseActivity : RxActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResourse())
+        StatusBarU.transparentStatusBar(this)
+        StatusBarU.setDarkMode(this)
         initView()
         initData()
         setListener()

@@ -46,8 +46,8 @@ open class NetU<T> {
         }
 
         fun createDialog() : Dialog{
-            var view = LayoutInflater.from(context).inflate(R.layout.dialog_loading , null , false)
-            return DialogU.createDialog(context , view , false)
+            //var view = LayoutInflater.from(context).inflate(R.layout.dialog_loading , null , false)
+            return DialogU.showLoadingDialog(context)
         }
     }
 
