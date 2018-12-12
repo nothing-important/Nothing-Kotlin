@@ -10,10 +10,7 @@ import com.example.administrator.nothing_kotlin.base.BaseLazyFragment
 import com.example.administrator.nothing_kotlin.bean.RespHomeData
 import com.example.administrator.nothing_kotlin.mvp.contract.HomeContract
 import com.example.administrator.nothing_kotlin.mvp.presenter.HomePresenter
-import com.example.administrator.nothing_kotlin.R.id.viewpager
 import android.widget.Scroller
-import com.example.administrator.nothing_kotlin.R.id.home
-import java.lang.reflect.AccessibleObject.setAccessible
 import java.util.*
 
 

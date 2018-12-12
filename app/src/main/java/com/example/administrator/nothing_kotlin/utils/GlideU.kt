@@ -36,7 +36,7 @@ class GlideU(var context: Context) {
 
 
     fun loadImgNormal(imageView: ImageView , imageUrl : String){
-        Glide.with(context).load(imageUrl).apply(requestOptions!!).thumbnail(0.5f).into(imageView)
+        Glide.with(context).load(imageUrl).apply(requestOptions!!).into(imageView)
     }
 
 }
