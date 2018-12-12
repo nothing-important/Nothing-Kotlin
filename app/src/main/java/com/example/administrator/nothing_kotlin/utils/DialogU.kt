@@ -26,8 +26,8 @@ class DialogU {
             var loadingImg : ImageView = view.findViewById(R.id.loading_img)
             val window = dialog.window
             val attributes = window.attributes
-            attributes.width = WindowManager.LayoutParams.MATCH_PARENT
-            attributes.height = WindowManager.LayoutParams.MATCH_PARENT
+            attributes.width = WindowManager.LayoutParams.WRAP_CONTENT
+            attributes.height = WindowManager.LayoutParams.WRAP_CONTENT
             window.attributes = attributes
             dialog.setOnShowListener(object  : DialogInterface.OnShowListener {
                 override fun onShow(dialog: DialogInterface?) {

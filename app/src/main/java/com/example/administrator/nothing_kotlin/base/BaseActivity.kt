@@ -11,8 +11,7 @@ abstract class BaseActivity : RxActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResourse())
-        StatusBarU.transparentStatusBar(this)
-        StatusBarU.setDarkMode(this)
+        setStatusBarStatus()
         initView()
         initData()
         setListener()
@@ -25,5 +24,10 @@ abstract class BaseActivity : RxActivity() {
     abstract fun initData()
 
     abstract fun setListener()
+
+    fun setStatusBarStatus(){
+        StatusBarU.transparentStatusBar(this)
+        StatusBarU.setLightMode(this , false)
+    }
 
 }

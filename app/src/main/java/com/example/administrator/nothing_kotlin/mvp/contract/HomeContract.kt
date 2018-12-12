@@ -10,7 +10,7 @@ interface HomeContract {
         fun requestData()
     }
 
-    interface View : BaseView<Presenter>{
+    interface View : BaseView{
         fun onRequestHomeDataSuccess(bean : RespHomeData)
     }
 
