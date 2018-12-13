@@ -13,7 +13,7 @@ class HomePresenter(var context: Context?, var activity: Activity?, var view: Ho
 
     override fun requestData() {
         val homeData = RetrofitHelper.getInstance(ApiService.BASE_URL).create()?.getHomeData()
-        NetU<RespHomeData>()?.with(context!!).isShowLoadDialog(true).build(homeData!!).request(object : RequestListener<RespHomeData>{
+        NetU<RespHomeData>().with(context!!).isShowLoadDialog(true).build(homeData!!).request(object : RequestListener<RespHomeData>{
             override fun onRequestSuccess(t: RespHomeData) {
                 view.onRequestHomeDataSuccess(t)
             }

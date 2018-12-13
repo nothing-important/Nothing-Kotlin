@@ -4,12 +4,18 @@ import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
 import com.example.administrator.nothing_kotlin.R
+import com.example.administrator.nothing_kotlin.base.BaseActivity
 import com.example.administrator.nothing_kotlin.utils.DialogU
 import com.example.administrator.nothing_kotlin.utils.LogU
+import com.trello.rxlifecycle.ActivityEvent
+import com.trello.rxlifecycle.RxLifecycle
+import retrofit2.Response
 import rx.Observable
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.functions.Action0
+import rx.functions.Func1
+import rx.functions.Func3
 import rx.schedulers.Schedulers
 
 open class NetU<T> {
@@ -36,11 +42,13 @@ open class NetU<T> {
 
     class NetRequest<T>(var context: Context, var isShowLoadingDialog: Boolean, var observable: Observable<T>){
         fun request(requestListener: RequestListener<T>){
+            var activity : BaseActivity = context as BaseActivity
             var dialog : Dialog = createDialog()
             this.observable.subscribeOn(Schedulers.io())?.
                     doOnSubscribe(NetAction(isShowLoadingDialog , dialog))?.
                     subscribeOn(AndroidSchedulers.mainThread())?.
                     unsubscribeOn(Schedulers.io())?.
+                    compose(RxLifecycle.bindUntilEvent(activity.lifecycle() , ActivityEvent.STOP))?.
                     observeOn(AndroidSchedulers.mainThread())?.
                     subscribe(NetSubscriber(requestListener , dialog))
         }
@@ -71,7 +79,7 @@ open class NetU<T> {
         override fun onError(e: Throwable?) {
             dialog.dismiss()
             LogU.e("retrofit" , e?.message!!)
-            requestListener.onSystemError(e?.message!!)
+            requestListener.onSystemError(e.message!!)
         }
 
     }
