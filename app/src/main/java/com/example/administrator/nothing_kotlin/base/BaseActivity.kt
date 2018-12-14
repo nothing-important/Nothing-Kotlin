@@ -27,7 +27,7 @@ abstract class BaseActivity : RxActivity() {
 
     fun setStatusBarStatus(){
         StatusBarU.transparentStatusBar(this)
-        StatusBarU.setLightMode(this , false)
+        StatusBarU.setLightMode(this , true)
     }
 
 }
