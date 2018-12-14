@@ -57,21 +57,21 @@ class LogInterceptor : Interceptor {
         }
         stringBuilder.append("\n| requestParams-->$requestBody")
         stringBuilder.append("\n" + "---------------------------------------------")
-        LogU.e(TAG , "logForRequest: $stringBuilder")
+        LogU.i(TAG , "logForRequest: $stringBuilder")
     }
 
     @Throws(IOException::class)
     private fun logForResponse(chain: Interceptor.Chain, request: Request) {
         val stringBuilder = StringBuilder()
-        stringBuilder.append("\n" + "| -------------------请求结果-------------------")
+        stringBuilder.append("\n" + "-------------------请求结果-------------------")
         stringBuilder.append("\n" + "| requestUrl-->" + request.url())//请求地址
         stringBuilder.append("\n" + "| requestMethod-->" + request.method())//请求方法
         var response: Response? = null
         try {
             response = chain.proceed(request)
         } catch (e: Exception) {
-            stringBuilder.append("\n" + "| HTTP FIELD")
-            stringBuilder.append("\n" + "---------------------------------------------")
+            stringBuilder.append("\n" + "| ${e.toString()}")
+            stringBuilder.append("\n" + "--------------------------------------------")
             Log.e(TAG, "logForResponse: $stringBuilder")
             return
         }
@@ -103,7 +103,7 @@ class LogInterceptor : Interceptor {
         val s = responseBody
         stringBuilder.append("\n| $s")
         stringBuilder.append("\n---------------------------------------------")
-        Log.e(TAG, "logForResponse: $stringBuilder")
+        Log.i(TAG, "logForResponse: $stringBuilder")
     }
 
     private fun getCharset(contentType: MediaType): Charset {

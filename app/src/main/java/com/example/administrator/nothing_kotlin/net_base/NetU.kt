@@ -40,11 +40,18 @@ open class NetU<T> {
         return netRequest!!
     }
 
-    class NetRequest<T>(var context: Context, var isShowLoadingDialog: Boolean, var observable: Observable<T>){
+    class NetRequest<T>(var context: Context, var observable: Observable<T>){
+
+        var isShowLoadingDialog : Boolean = false
+
+        constructor(context: Context, isShowLoadingDialog: Boolean, observable: Observable<T>) : this(context , observable){
+            this.isShowLoadingDialog = isShowLoadingDialog
+        }
+
         fun request(requestListener: RequestListener<T>){
-            var activity : BaseActivity = context as BaseActivity
+            var activity : BaseActivity= context as BaseActivity
             var dialog : Dialog = createDialog()
-            this.observable.subscribeOn(Schedulers.io())?.
+            this.observable!!.subscribeOn(Schedulers.io())?.
                     doOnSubscribe(NetAction(isShowLoadingDialog , dialog))?.
                     subscribeOn(AndroidSchedulers.mainThread())?.
                     unsubscribeOn(Schedulers.io())?.
@@ -55,7 +62,7 @@ open class NetU<T> {
 
         fun createDialog() : Dialog{
             //var view = LayoutInflater.from(context).inflate(R.layout.dialog_loading , null , false)
-            return DialogU.showLoadingDialog(context)
+            return DialogU.showLoadingDialog(context!!)
         }
     }
 

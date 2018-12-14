@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/view_search"/>
-
+    <com.example.administrator.nothing_kotlin.cardview.CardView
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardShadowColorEnd="@color/white"
+        app:cardShadowColorStart="@color/gray_db">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/home_tab"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/text_color_black"
+            app:tabIndicatorColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x70"/>
+    </com.example.administrator.nothing_kotlin.cardview.CardView>
+    <com.example.administrator.nothing_kotlin.views.CustomViewPager
+        android:id="@+id/home_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

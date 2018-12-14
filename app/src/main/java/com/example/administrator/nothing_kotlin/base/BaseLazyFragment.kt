@@ -25,6 +25,11 @@ abstract class BaseLazyFragment : RxFragment() {
             rootView = inflater.inflate(getLayoutResourse() , container , false)
         }
         isInitView = true
+        return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView(rootView!!)
         if (!isLoad && isFragmentVisible){
             initData(isFirst)
@@ -32,7 +37,6 @@ abstract class BaseLazyFragment : RxFragment() {
             isFirst = false
         }
         setListener()
-        return rootView
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {

@@ -1,18 +1,16 @@
 package com.example.administrator.nothing_kotlin.mvp.contract
 
-import com.example.administrator.nothing_kotlin.bean.RespHomeData
-import com.example.administrator.nothing_kotlin.bean.RespXDMainBranch
 import com.example.administrator.nothing_kotlin.mvp_base.BasePresenter
 import com.example.administrator.nothing_kotlin.mvp_base.BaseView
 
-interface HomeContract {
+class TabContract {
 
     interface Presenter : BasePresenter{
-        fun requestData()
+        fun requestData(categoryID : String)
     }
 
     interface View : BaseView{
-        fun onRequestHomeDataSuccess(bean : RespXDMainBranch)
+        //fun onRequestBranchDataSuccess()
     }
 
 }
