@@ -35,13 +35,14 @@ class TabPresenter(var context: Context , var activity: BaseActivity , var view 
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribe(object : Subscriber<RespHomeDetailData>() {
                     override fun onNext(t: RespHomeDetailData?) {
-
+                        view.onRequestBranchDataSuccess(t!!)
                     }
 
                     override fun onCompleted() {
                     }
 
                     override fun onError(e: Throwable?) {
+                        view.onRequestBranchDataError(e.toString())
                     }
                 })
     }

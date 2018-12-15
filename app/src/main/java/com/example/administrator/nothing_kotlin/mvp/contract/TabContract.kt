@@ -1,5 +1,6 @@
 package com.example.administrator.nothing_kotlin.mvp.contract
 
+import com.example.administrator.nothing_kotlin.bean.RespHomeDetailData
 import com.example.administrator.nothing_kotlin.mvp_base.BasePresenter
 import com.example.administrator.nothing_kotlin.mvp_base.BaseView
 
@@ -10,7 +11,8 @@ class TabContract {
     }
 
     interface View : BaseView{
-        //fun onRequestBranchDataSuccess()
+        fun onRequestBranchDataSuccess(beanData : RespHomeDetailData)
+        fun onRequestBranchDataError(errorMsg : String)
     }
 
 }
