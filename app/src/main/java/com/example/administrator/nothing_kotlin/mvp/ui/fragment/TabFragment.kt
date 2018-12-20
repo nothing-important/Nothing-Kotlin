@@ -13,9 +13,12 @@ import com.example.administrator.nothing_kotlin.bean.RespHomeDetailData
 import com.example.administrator.nothing_kotlin.bean.RespXDMainBranch
 import com.example.administrator.nothing_kotlin.mvp.contract.TabContract
 import com.example.administrator.nothing_kotlin.mvp.presenter.TabPresenter
+import com.example.administrator.nothing_kotlin.mvp.ui.WebActivity
+import com.example.administrator.nothing_kotlin.utils.LogU
 import kotlinx.android.synthetic.main.fragment_home_tab.*
+import org.json.JSONObject
 
-class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.OnRefreshListener {
+class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.OnRefreshListener, TabDetailAdapter.ItemClick {
 
     var dataBean : RespXDMainBranch.Result? = null
     var presenter : TabPresenter? = null
@@ -39,7 +42,7 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
         home_tab_swipe.setOnRefreshListener(this)
         home_tab_swipe.setColorSchemeColors(Color.BLACK , Color.RED , Color.BLUE , Color.MAGENTA)
         home_tab_recycler.layoutManager = LinearLayoutManager(activity)
-        adapter = TabDetailAdapter(activity as BaseActivity, dataList)
+        adapter = TabDetailAdapter(activity as BaseActivity, dataList , this)
         home_tab_recycler.adapter = adapter
     }
 
@@ -67,6 +70,16 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
 
     override fun onRequestBranchDataError(errorMsg: String) {
         home_tab_swipe.isRefreshing = false
+    }
+
+    override fun onItemClick(psn: Int) {
+        var result = dataList[psn]
+        var raw = result.raw
+        val indexOf = raw.indexOf("summary")
+        val substring = raw.substring(indexOf, raw.length)
+        var split = raw.split(",")
+        val replace = raw.replace("'", "\"")
+        WebActivity.trans(activity!! , result.url)
     }
 
 }

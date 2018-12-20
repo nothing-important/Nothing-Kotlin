@@ -9,9 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.bean.RespHomeDetailData
+import com.example.administrator.nothing_kotlin.cardview.CardView
 import com.example.administrator.nothing_kotlin.utils.GlideU
 
-class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetailData.Result>) : RecyclerView.Adapter<TabDetailAdapter.TabDetailAdapter_VH>() {
+class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetailData.Result> , var itemClick: ItemClick) : RecyclerView.Adapter<TabDetailAdapter.TabDetailAdapter_VH>() {
 
     var inflater : LayoutInflater? = null
 
@@ -34,11 +35,19 @@ class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetail
             GlideU.getInstance(context).loadImgNormal(p0.tab_img , result.cover)
         }
         p0.tab_tv.setText(result.title)
+        p0.tab_container.setOnClickListener {
+            itemClick.onItemClick(p1)
+        }
     }
 
 
     open class TabDetailAdapter_VH(view: View) : RecyclerView.ViewHolder(view){
         var tab_img : ImageView = view.findViewById(R.id.tab_img)
         var tab_tv : TextView = view.findViewById(R.id.tab_title)
+        var tab_container : CardView = view.findViewById(R.id.tab_container)
+    }
+
+    open interface ItemClick{
+        fun onItemClick(psn : Int)
     }
 }
