@@ -14,7 +14,7 @@ interface ApiService {
     companion object{
         val BASE_URL : String
             get() = "http://gank.io/api/"
-        val DEFAULT_NUM = 10
+        val DEFAULT_NUM = 6
     }
 
     //获取闲度的主分类

@@ -48,7 +48,7 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
 
     override fun initData(isFirstTime: Boolean) {
         if (isFirstTime){
-            home_tab_swipe.isRefreshing = true
+            home_tab_swipe?.isRefreshing = true
             presenter?.requestData(dataBean?.en_name!!)
         }
     }
@@ -65,20 +65,15 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
         dataList.clear()
         dataList.addAll(beanData.results)
         adapter?.notifyDataSetChanged()
-        home_tab_swipe.isRefreshing = false
+        home_tab_swipe?.isRefreshing = false
     }
 
     override fun onRequestBranchDataError(errorMsg: String) {
-        home_tab_swipe.isRefreshing = false
+        home_tab_swipe?.isRefreshing = false
     }
 
     override fun onItemClick(psn: Int) {
         var result = dataList[psn]
-        var raw = result.raw
-        val indexOf = raw.indexOf("summary")
-        val substring = raw.substring(indexOf, raw.length)
-        var split = raw.split(",")
-        val replace = raw.replace("'", "\"")
         WebActivity.trans(activity!! , result.url)
     }
 

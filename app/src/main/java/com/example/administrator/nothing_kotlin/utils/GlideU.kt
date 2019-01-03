@@ -15,6 +15,7 @@ class GlideU(var context: Context) {
     init {
         requestOptions = RequestOptions()
         requestOptions?.diskCacheStrategy(DiskCacheStrategy.ALL)
+        requestOptions?.override(400 , 400)
     }
 
     companion object {
