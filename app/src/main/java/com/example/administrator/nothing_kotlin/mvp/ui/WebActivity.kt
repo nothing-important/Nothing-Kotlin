@@ -2,27 +2,31 @@ package com.example.administrator.nothing_kotlin.mvp.ui
 
 import android.content.Context
 import android.content.Intent
-import android.webkit.WebSettings
-import android.webkit.WebView
+import android.graphics.Bitmap
+import android.webkit.*
+import android.widget.TextView
 import com.example.administrator.nothing_kotlin.R
+import com.example.administrator.nothing_kotlin.R.id.title_name
 import com.example.administrator.nothing_kotlin.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_web.*
 
 class WebActivity : BaseActivity() {
 
     var urlPath : String = ""
+    var titleName : TextView? = null
 
     override fun getLayoutResourse(): Int {
         return R.layout.activity_web
     }
 
     override fun initView() {
-
+        titleName = findViewById(R.id.title_name)
     }
 
     override fun initData() {
         initIntent()
         initWebSetting(web_view)
+        web_view.webViewClient = MyWebClient()
         web_view.loadUrl(urlPath)
     }
 
@@ -53,6 +57,20 @@ class WebActivity : BaseActivity() {
     }
 
     override fun setListener() {
+    }
+
+    class MyWebClient : WebViewClient(){
+        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+            super.onPageStarted(view, url, favicon)
+        }
+
+        override fun onPageFinished(view: WebView?, url: String?) {
+            super.onPageFinished(view, url)
+        }
+
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            return super.shouldOverrideUrlLoading(view, request)
+        }
     }
 
     companion object {

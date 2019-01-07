@@ -62,10 +62,10 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
     }
 
     override fun onRequestBranchDataSuccess(beanData: RespHomeDetailData) {
+        home_tab_swipe?.isRefreshing = false
         dataList.clear()
         dataList.addAll(beanData.results)
         adapter?.notifyDataSetChanged()
-        home_tab_swipe?.isRefreshing = false
     }
 
     override fun onRequestBranchDataError(errorMsg: String) {

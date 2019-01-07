@@ -11,14 +11,12 @@ import okhttp3.OkHttpClient
 import java.io.InputStream
 
 @GlideModule
-class MyGlideModule : AppGlideModule() {
+class MyGlideModule : com.bumptech.glide.module.GlideModule {
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
-        super.applyOptions(context, builder)
     }
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        super.registerComponents(context, glide, registry)
         var builder = OkHttpClient.Builder()
         builder.addInterceptor(ProgressInterceptor())
         val build = builder.build()

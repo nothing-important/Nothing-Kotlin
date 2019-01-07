@@ -21,9 +21,14 @@ abstract class BaseLazyFragment : RxFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (rootView == null){
-            rootView = inflater.inflate(getLayoutResourse() , container , false)
+        if (rootView != null){
+            if (rootView?.parent != null){
+                var parent : ViewGroup = rootView?.parent as ViewGroup
+                parent.removeView(rootView)
+            }
+            return rootView
         }
+        rootView = inflater.inflate(getLayoutResourse() , container , false)
         isInitView = true
         return rootView
     }

@@ -31,8 +31,8 @@ class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetail
 
     override fun onBindViewHolder(p0: TabDetailAdapter_VH, p1: Int) {
         val result = list.get(p1)
-        if(result.cover.length > 0){
-            GlideU.getInstance(context).loadImgNormal(p0.tab_img , result.cover)
+        if(result.cover != null && result.cover.length > 0){
+            GlideU.get().with(context).compressScale(10).loadImgNormal(p0.tab_img , result.cover)
         }
         p0.tab_tv.setText(result.title)
         p0.tab_container.setOnClickListener {

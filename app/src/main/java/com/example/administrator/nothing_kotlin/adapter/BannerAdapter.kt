@@ -28,7 +28,7 @@ class BannerAdapter(var list : List<String> , var context: Context) : PagerAdapt
         imageView.setBitmapType(RoundImageView.BitmapType.ROUND)
         imageView.setRoundRadius(ScreenU.dp2px(context , 1))
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        GlideU.getInstance(context).loadImgNormal(imageView , list[position % list.size])
+        GlideU.get().with(context).compressScale(4).loadImgNormal(imageView , list[position % list.size])
         container.addView(imageView)
         return imageView
     }
