@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.bean.RespHomeDetailData
 import com.example.administrator.nothing_kotlin.cardview.CardView
-import com.example.administrator.nothing_kotlin.utils.GlideU
+import com.example.administrator.nothing_kotlin.utils.glide_utils.GlideU
 
 class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetailData.Result> , var itemClick: ItemClick) : RecyclerView.Adapter<TabDetailAdapter.TabDetailAdapter_VH>() {
 
@@ -31,7 +31,7 @@ class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetail
 
     override fun onBindViewHolder(p0: TabDetailAdapter_VH, p1: Int) {
         val result = list.get(p1)
-        if(result.cover != null && result.cover.length > 0){
+        if(result.cover.length > 0){
             GlideU.getInstance(context).loadImgNormal(p0.tab_img , result.cover)
         }
         p0.tab_tv.setText(result.title)

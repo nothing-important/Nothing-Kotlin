@@ -5,7 +5,7 @@ import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.example.administrator.nothing_kotlin.utils.GlideU
+import com.example.administrator.nothing_kotlin.utils.glide_utils.GlideU
 import com.example.administrator.nothing_kotlin.utils.ScreenU
 import com.example.administrator.nothing_kotlin.views.RoundImageView
 
