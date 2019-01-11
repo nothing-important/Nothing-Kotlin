@@ -1,6 +1,7 @@
 package com.example.administrator.nothing_kotlin.utils.glide_utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -13,7 +14,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.net_base.RetrofitHelper
-import com.example.administrator.nothing_kotlin.utils.LogU
 
 class GlideU {
 
@@ -36,7 +36,7 @@ class GlideU {
     companion object {
         @SuppressLint("StaticFieldLeak")
         @Volatile
-        var instance: GlideU? = null
+        private var instance: GlideU? = null
 
         fun get() : GlideU {
             if (instance == null) {
@@ -55,6 +55,11 @@ class GlideU {
         return this
     }
 
+    fun with(activity: Activity) : GlideU{
+        this.context = activity
+        return this
+    }
+
     fun compressScale(scale : Int) : GlideU{
         requestOptions?.override(Target.SIZE_ORIGINAL/scale , Target.SIZE_ORIGINAL/scale)//图片大小
         return this
@@ -62,9 +67,13 @@ class GlideU {
 
 
     fun loadImgNormal(imageView: ImageView , imageUrl : String){
+        loadImgNormal(imageView , imageUrl , null)
+    }
+
+    fun loadImgNormal(imageView: ImageView , imageUrl: String , imageLoadListener: ImageLoadListener?){
         ProgressInterceptor.addListener(imageUrl , object : ProgressListener{
             override fun onProgress(progress: Int) {
-                LogU.e("what" , progress)
+                imageLoadListener?.onImageLoadStart(progress)
             }
         })
         Glide
@@ -75,15 +84,26 @@ class GlideU {
                     //boolean 的返回值，false表示未处理、true 表示处理。
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                         imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
+                        ProgressInterceptor.removeListener(imageUrl)
+                        imageLoadListener?.onImageLoadError()
                         return false
                     }
 
                     override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        ProgressInterceptor.removeListener(imageUrl)
+                        imageLoadListener?.onImageLoadFinish()
                         return false
                     }
 
                 })
                 .into(imageView)
+    }
+
+
+    interface ImageLoadListener{
+        fun onImageLoadStart(progress : Int)
+        fun onImageLoadFinish()
+        fun onImageLoadError()
     }
 
 }

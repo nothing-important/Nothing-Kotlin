@@ -30,14 +30,14 @@ class HomeFragment : BaseLazyFragment() , HomeContract.View, SwipeRefreshLayout.
 
     override fun initView(view: View) {
         presenter = HomePresenter(context, activity as Activity?, this)
-        tabAdapter = TabAdapter(fragmentManager , tabFragments , tabFragmentName)
-        home_viewPager.adapter = tabAdapter
-        home_tab.setupWithViewPager(home_viewPager)
     }
 
     override fun initData(isFirstTime : Boolean) {
         if (isFirstTime){
             presenter?.requestData()
+            tabAdapter = TabAdapter(fragmentManager , tabFragments , tabFragmentName)
+            home_viewPager.adapter = tabAdapter
+            home_tab.setupWithViewPager(home_viewPager)
         }
     }
 

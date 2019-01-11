@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.example.administrator.nothing_kotlin.R
 import com.example.administrator.nothing_kotlin.bean.RespHomeDetailData
 import com.example.administrator.nothing_kotlin.cardview.CardView
+import com.example.administrator.nothing_kotlin.utils.LogU
 import com.example.administrator.nothing_kotlin.utils.glide_utils.GlideU
 
 class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetailData.Result> , var itemClick: ItemClick) : RecyclerView.Adapter<TabDetailAdapter.TabDetailAdapter_VH>() {
@@ -32,7 +33,12 @@ class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetail
     override fun onBindViewHolder(p0: TabDetailAdapter_VH, p1: Int) {
         val result = list.get(p1)
         if(result.cover != null && result.cover.length > 0){
-            GlideU.get().with(context).compressScale(10).loadImgNormal(p0.tab_img , result.cover)
+            GlideU
+                    .get()
+                    .with(context)
+                    .compressScale(10)
+                    .loadImgNormal(p0.tab_img , result.cover)
+
         }
         p0.tab_tv.setText(result.title)
         p0.tab_container.setOnClickListener {
@@ -45,6 +51,7 @@ class TabDetailAdapter(var context: Context , var list: ArrayList<RespHomeDetail
         var tab_img : ImageView = view.findViewById(R.id.tab_img)
         var tab_tv : TextView = view.findViewById(R.id.tab_title)
         var tab_container : CardView = view.findViewById(R.id.tab_container)
+        var tab_img_progress : TextView = view.findViewById(R.id.tab_img_progress)
     }
 
     open interface ItemClick{

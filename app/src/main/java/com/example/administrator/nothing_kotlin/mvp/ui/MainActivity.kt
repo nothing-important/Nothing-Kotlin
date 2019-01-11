@@ -15,7 +15,7 @@ import com.example.administrator.nothing_kotlin.mvp.ui.fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 @RequiresApi(Build.VERSION_CODES.M)
-class MainActivity : BaseActivity(), View.OnClickListener, View.OnScrollChangeListener, ViewPager.OnPageChangeListener {
+class MainActivity : BaseActivity(), View.OnClickListener, ViewPager.OnPageChangeListener {
 
     var mainAdapter : MainAdapter? = null
     var fragmentList : ArrayList<Fragment> = ArrayList()
@@ -34,10 +34,10 @@ class MainActivity : BaseActivity(), View.OnClickListener, View.OnScrollChangeLi
         fragmentList.add(homeFragment)
         fragmentList.add(goodsFragment)
         fragmentList.add(discoveryFragment)
-        var fragmentManager : FragmentManager = supportFragmentManager
-        mainAdapter = MainAdapter(fragmentManager , fragmentList)
+        mainAdapter = MainAdapter(supportFragmentManager , fragmentList)
         viewpager?.adapter = mainAdapter
         viewpager?.setCurrentItem(0)
+        viewpager?.addOnPageChangeListener(this)
     }
 
     override fun setListener() {
@@ -88,9 +88,6 @@ class MainActivity : BaseActivity(), View.OnClickListener, View.OnScrollChangeLi
     private fun setGoodsSelect(){
         goods_img?.setImageResource(R.mipmap.main_shoping_select_tab)
         goods_tv?.setTextColor(resources.getColor(R.color.text_color_black))
-    }
-
-    override fun onScrollChange(v: View?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
     }
 
     override fun onPageScrollStateChanged(p0: Int) {
