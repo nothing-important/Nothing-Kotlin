@@ -1,5 +1,6 @@
 package com.example.administrator.nothing_kotlin.mvp.ui.fragment
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager

@@ -2,7 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/view_title"/>
+    <!--<include layout="@layout/view_title"/>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x48"
+        android:background="@color/white"/>
+    <ProgressBar
+        android:id="@+id/web_progress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progress="100" />
     <WebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
