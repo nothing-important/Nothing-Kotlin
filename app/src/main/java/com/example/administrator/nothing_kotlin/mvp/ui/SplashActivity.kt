@@ -1,7 +1,5 @@
 package com.example.administrator.nothing_kotlin.mvp.ui
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.view.animation.*
 import android.widget.TextView
