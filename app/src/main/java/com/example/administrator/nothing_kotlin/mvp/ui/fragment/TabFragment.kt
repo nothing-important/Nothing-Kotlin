@@ -16,10 +16,15 @@ import com.example.administrator.nothing_kotlin.mvp.contract.TabContract
 import com.example.administrator.nothing_kotlin.mvp.presenter.TabPresenter
 import com.example.administrator.nothing_kotlin.mvp.ui.WebActivity
 import com.example.administrator.nothing_kotlin.utils.LogU
+import com.example.administrator.nothing_kotlin.widget.CustomLoadFooter
+import com.example.administrator.nothing_kotlin.widget.CustomRefreshHeader
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_home_tab.*
 import org.json.JSONObject
 
-class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.OnRefreshListener, TabDetailAdapter.ItemClick {
+class TabFragment : BaseLazyFragment() , TabContract.View, TabDetailAdapter.ItemClick, OnRefreshListener, OnLoadmoreListener {
 
     var dataBean : RespXDMainBranch.Result? = null
     var presenter : TabPresenter? = null
@@ -41,7 +46,9 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
     override fun initView(view: View) {
         presenter = TabPresenter(context!! , activity as BaseActivity, this)
         home_tab_swipe.setOnRefreshListener(this)
-        home_tab_swipe.setColorSchemeColors(Color.BLACK , Color.RED , Color.BLUE , Color.MAGENTA)
+        home_tab_swipe.setOnLoadmoreListener(this)
+        home_tab_swipe.refreshHeader = CustomRefreshHeader(activity as BaseActivity)
+        home_tab_swipe.refreshFooter = CustomLoadFooter(activity as BaseActivity)
         home_tab_recycler.layoutManager = LinearLayoutManager(activity)
         adapter = TabDetailAdapter(activity as BaseActivity, dataList , this)
         home_tab_recycler.adapter = adapter
@@ -49,8 +56,7 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
 
     override fun initData(isFirstTime: Boolean) {
         if (isFirstTime){
-            home_tab_swipe?.isRefreshing = true
-            presenter?.requestData(dataBean?.en_name!!)
+            home_tab_swipe?.autoRefresh(10)
         }
     }
 
@@ -58,19 +64,23 @@ class TabFragment : BaseLazyFragment() , TabContract.View, SwipeRefreshLayout.On
     }
 
 
-    override fun onRefresh() {
+    override fun onRefresh(refreshlayout: RefreshLayout?) {
         presenter?.requestData(dataBean?.en_name!!)
     }
 
+    override fun onLoadmore(refreshlayout: RefreshLayout?) {
+        home_tab_swipe.finishLoadmore(2000)
+    }
+
     override fun onRequestBranchDataSuccess(beanData: RespHomeDetailData) {
-        home_tab_swipe?.isRefreshing = false
+        home_tab_swipe?.finishRefresh()
         dataList.clear()
         dataList.addAll(beanData.results)
         adapter?.notifyDataSetChanged()
     }
 
     override fun onRequestBranchDataError(errorMsg: String) {
-        home_tab_swipe?.isRefreshing = false
+        home_tab_swipe?.finishRefresh()
     }
 
     override fun onItemClick(psn: Int) {
