@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream
 import java.nio.charset.Charset
 
 
-class LogInterceptor : Interceptor {
+class InterceptorLog : Interceptor {
 
     val TAG : String = "retrofit"
     private val UTF8 = Charset.forName("UTF-8")
