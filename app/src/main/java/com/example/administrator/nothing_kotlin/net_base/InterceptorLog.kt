@@ -1,5 +1,6 @@
 package com.example.administrator.nothing_kotlin.net_base
 
+import android.annotation.SuppressLint
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -10,6 +11,8 @@ import java.io.IOException
 import okhttp3.MediaType
 import java.io.ByteArrayOutputStream
 import java.nio.charset.Charset
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class InterceptorLog : Interceptor {
@@ -29,10 +32,15 @@ class InterceptorLog : Interceptor {
         return chain.proceed(request)
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Throws(IOException::class)
     private fun logForRequest(request: Request) {
         val stringBuilder = StringBuilder()
         stringBuilder.append("\n" + "--------------------请求信息------------------")
+        var date = Date()
+        var simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val format = simpleDateFormat.format(date)
+        stringBuilder.append("\n| requestTime-->$format")
         stringBuilder.append("\n" + "| requestUrl-->" + request.url())//请求地址
         stringBuilder.append("\n" + "| requestMethod-->" + request.method())//请求方法
         //请求头
@@ -60,10 +68,15 @@ class InterceptorLog : Interceptor {
         LogU.i(TAG , "logForRequest: $stringBuilder")
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Throws(IOException::class)
     private fun logForResponse(chain: Interceptor.Chain, request: Request) {
         val stringBuilder = StringBuilder()
         stringBuilder.append("\n" + "-------------------请求结果-------------------")
+        var date = Date()
+        var simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val format = simpleDateFormat.format(date)
+        stringBuilder.append("\n| responseTime-->$format")
         stringBuilder.append("\n" + "| requestUrl-->" + request.url())//请求地址
         stringBuilder.append("\n" + "| requestMethod-->" + request.method())//请求方法
         var response: Response? = null
