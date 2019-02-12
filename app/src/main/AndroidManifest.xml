@@ -24,8 +24,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".mvp.ui.WebActivity"
             android:screenOrientation="portrait"/>
-
-
+        <activity android:name=".mvp.ui.SearchActivity"
+            android:screenOrientation="portrait"/>
         <meta-data android:name="com.example.administrator.nothing_kotlin.utils.glide_utils.MyGlideModule"
             android:value="GlideModule"/>
     </application>
