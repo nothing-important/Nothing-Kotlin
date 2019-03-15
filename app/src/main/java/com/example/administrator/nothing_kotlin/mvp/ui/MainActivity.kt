@@ -1,10 +1,8 @@
 package com.example.administrator.nothing_kotlin.mvp.ui
 
-import android.app.AlarmManager
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v4.view.ViewPager
 import android.view.View
 import com.example.administrator.nothing_kotlin.R
@@ -29,15 +27,15 @@ class MainActivity : BaseActivity(), View.OnClickListener, ViewPager.OnPageChang
     }
 
     override fun initData() {
-        var homeFragment = HomeFragment()
-        var discoveryFragment = MineFragment()
-        var goodsFragment = GoodsFragment()
+        val homeFragment = HomeFragment()
+        val discoveryFragment = MineFragment()
+        val goodsFragment = GoodsFragment()
         fragmentList.add(homeFragment)
         fragmentList.add(goodsFragment)
         fragmentList.add(discoveryFragment)
         mainAdapter = MainAdapter(supportFragmentManager , fragmentList)
         viewpager?.adapter = mainAdapter
-        viewpager?.setCurrentItem(0)
+        viewpager?.currentItem = 0
         viewpager?.addOnPageChangeListener(this)
     }
 
@@ -52,17 +50,17 @@ class MainActivity : BaseActivity(), View.OnClickListener, ViewPager.OnPageChang
             R.id.mine_linear ->{
                 reset()
                 setMineSelect()
-                viewpager?.setCurrentItem(2)
+                viewpager?.currentItem = 2
             }
             R.id.home_linear ->{
                 reset()
                 setHomeSelect()
-                viewpager?.setCurrentItem(0)
+                viewpager?.currentItem = 0
             }
             R.id.goods_linear ->{
                 reset()
                 setGoodsSelect()
-                viewpager?.setCurrentItem(1)
+                viewpager?.currentItem = 1
             }
         }
     }
@@ -96,12 +94,10 @@ class MainActivity : BaseActivity(), View.OnClickListener, ViewPager.OnPageChang
 
     override fun onPageSelected(p0: Int) {
         reset()
-        if (p0 == 0){
-            setHomeSelect()
-        }else if (p0 == 1){
-            setGoodsSelect()
-        }else if (p0 == 2){
-            setMineSelect()
+        when (p0) {
+            0 -> setHomeSelect()
+            1 -> setGoodsSelect()
+            2 -> setMineSelect()
         }
     }
 

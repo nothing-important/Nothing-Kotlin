@@ -21,7 +21,7 @@ class InterceptorLog : Interceptor {
     private val UTF8 = Charset.forName("UTF-8")
 
     override fun intercept(chain: Interceptor.Chain?): Response {
-        var request : Request = chain!!.request()
+        val request : Request = chain!!.request()
                 .newBuilder()
                 .removeHeader("Accept-Encoding")
                 .removeHeader("Content-Type")
@@ -37,8 +37,8 @@ class InterceptorLog : Interceptor {
     private fun logForRequest(request: Request) {
         val stringBuilder = StringBuilder()
         stringBuilder.append("\n" + "--------------------请求信息------------------")
-        var date = Date()
-        var simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date = Date()
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val format = simpleDateFormat.format(date)
         stringBuilder.append("\n| requestTime-->$format")
         stringBuilder.append("\n" + "| requestUrl-->" + request.url())//请求地址
@@ -73,8 +73,8 @@ class InterceptorLog : Interceptor {
     private fun logForResponse(chain: Interceptor.Chain, request: Request) {
         val stringBuilder = StringBuilder()
         stringBuilder.append("\n" + "-------------------请求结果-------------------")
-        var date = Date()
-        var simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date = Date()
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val format = simpleDateFormat.format(date)
         stringBuilder.append("\n| responseTime-->$format")
         stringBuilder.append("\n" + "| requestUrl-->" + request.url())//请求地址
@@ -125,12 +125,12 @@ class InterceptorLog : Interceptor {
 
     private fun isPlaintext(mediaType: MediaType?): Boolean {
         if (mediaType == null) return false
-        if (mediaType!!.type() != null && mediaType!!.type().equals("text")) {
+        if (mediaType.type() == "text") {
             return true
         }
-        var subtype = mediaType!!.subtype()
+        var subtype = mediaType.subtype()
         if (subtype != null) {
-            subtype = subtype!!.toLowerCase()
+            subtype = subtype.toLowerCase()
             if (subtype!!.contains("x-www-form-urlencoded") || subtype!!.contains("json") || subtype!!.contains("xml") || subtype!!.contains("html"))
             //
                 return true
